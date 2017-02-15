@@ -22,5 +22,6 @@ export default {
     getPercent: P2P.getPercent,
     getLocalFileSize: P2P.getLocalFileSize,
     getTaskStatusCode: P2P.getTaskStatusCode,
+    getTaskInfo: P2P.getTaskInfo,
     doTest: P2P.doTest
 };

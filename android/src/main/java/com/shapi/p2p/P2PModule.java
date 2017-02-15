@@ -5,11 +5,14 @@ import android.content.pm.PackageManager;
 import android.support.v4.content.PermissionChecker;
 import android.util.Log;
 
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Callback;
+import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.PromiseImpl;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
+import com.facebook.react.bridge.WritableMap;
 import com.facebook.react.modules.permissions.PermissionsModule;
 
 /**
@@ -252,6 +255,7 @@ public class P2PModule extends ReactContextBaseJavaModule {
         }
     }
 
+    //NOITEM = 0 ERROR = 1 PAUSE = 2 CONNECT = 3 DOWNLOAD = 4 COMPLETE = 5 QUEUE = 6 STOPED_PLAYING = 7
     @ReactMethod
     public void getTaskStatusCode(int t, Callback callback) {
         log("getTaskStatusCode", t);
@@ -259,6 +263,26 @@ public class P2PModule extends ReactContextBaseJavaModule {
             callback.invoke(CODE_FAIL);
         } else {
             callback.invoke(mP2PClass.getTaskStatusCode(t));
+        }
+    }
+
+    @ReactMethod
+    public void getTaskInfo(int t, Promise promise) {
+        log("getTaskInfo");
+        if (mP2PClass == null) {
+            promise.reject(CODE_FAIL + "", "mP2PClass is null");
+        } else {
+            String speed = mP2PClass.getSpeed(t) + "";
+            String downSize = mP2PClass.getDownSize(t) + "";
+            String fileSize = mP2PClass.getFileSize(t) + "";
+            int taskStatusCode = mP2PClass.getTaskStatusCode(t);
+            WritableMap map = Arguments.createMap();
+            map.putInt("_result", CODE_SUC);
+            map.putInt("taskStatusCode", taskStatusCode);
+            map.putString("speed", speed);
+            map.putString("downSize", downSize);
+            map.putString("fileSize", fileSize);
+            promise.resolve(map);
         }
     }
 
