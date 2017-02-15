@@ -208,7 +208,7 @@ public class P2PModule extends ReactContextBaseJavaModule {
         if (mP2PClass == null) {
             callback.invoke(CODE_FAIL);
         } else {
-            callback.invoke(mP2PClass.getSpeed(t));
+            callback.invoke(mP2PClass.getSpeed(t).toString());
         }
     }
 
@@ -218,7 +218,7 @@ public class P2PModule extends ReactContextBaseJavaModule {
         if (mP2PClass == null) {
             callback.invoke(CODE_FAIL);
         } else {
-            callback.invoke(mP2PClass.getDownSize(t));
+            callback.invoke(mP2PClass.getDownSize(t).toString());
         }
     }
 
@@ -228,7 +228,7 @@ public class P2PModule extends ReactContextBaseJavaModule {
         if (mP2PClass == null) {
             callback.invoke(CODE_FAIL);
         } else {
-            callback.invoke(mP2PClass.getFileSize(t));
+            callback.invoke(mP2PClass.getFileSize(t).toString());
         }
     }
 
@@ -248,7 +248,7 @@ public class P2PModule extends ReactContextBaseJavaModule {
         if (mP2PClass == null) {
             callback.invoke(CODE_FAIL);
         } else {
-            callback.invoke(mP2PClass.getLocalFileSize(url.getBytes()));
+            callback.invoke(mP2PClass.getLocalFileSize(url.getBytes()).toString());
         }
     }
 
