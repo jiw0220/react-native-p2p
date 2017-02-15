@@ -1,6 +1,6 @@
 {
   "name": "react-native-p2p",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "networks p2p",
   "main": "index.js",
   "scripts": {
